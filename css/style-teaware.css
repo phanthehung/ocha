@@ -1,0 +1,118 @@
+#jcl .carousel {
+    /*border: 1px solid #bababa;*/
+    border-radius: 10px;
+    background-color: ghostwhite;
+    float: left;
+    padding-left: 5px;
+
+    /* Needed for rendering without flicker */
+    /*position: relative;*/
+/*    visibility: hidden;
+    left: -5000px;*/
+}
+
+    /* Styling for image based carousel content. Only width and height are mandatory */
+    #jcl .carousel>ul>li>img {
+        /*width: 250px;
+        height: 218px;*/
+        vertical-align:middle;
+
+        /* optional */
+        margin: 10px 10px 10px 0;
+        border-radius: 5px;
+    }
+
+    /* Styling for text based carousel content. Only width and height are mandatory */
+    #jcl .carousel>ul>li>p {
+        width: 130px;
+        height: 98px;
+
+        margin: 10px 10px 10px 0;
+        border: 1px solid #808080;
+        border-radius: 5px;
+        line-height: normal;
+        background-color: #fff;
+        padding: 10px;
+    }
+
+/* Styles for PREV and NEXT anchor buttons */
+#jcl a.prev, #jcl a.next, #jcl a.go {
+    display: block;
+    width: 26px;
+    height: 30px;
+    line-height: 1;
+
+    background-color: #333333;
+    color: ghostwhite;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+
+    border-radius: 8px;
+    float: left;
+}
+    #jcl a.prev.disabled, #jcl a.next.disabled,
+    #jcl a.prev.disabled:hover, #jcl a.next.disabled:hover {
+        background-color: #8d8d8d;
+        cursor: default;
+    }
+    #jcl a.go.highlight {
+        background-color: #dedede;
+        color: #000;
+    }
+    #jcl a.prev {
+        margin: 50px -5px 0 0;
+        text-indent: 7px;
+    }
+    #jcl a.next {
+        margin: 50px 0 0 -5px;
+        text-indent: 10px;
+    }
+        #jcl a.prev:hover, #jcl a.next:hover, #jcl a.go:hover {
+            background-color: #666666;
+        }
+
+/* Additional carousel styles for external controls, slider, widget, mid etc. */
+
+#jcl .externalControl button,
+#jcl .imageSliderExt button {
+    margin: 5px 5px 0 0;
+}
+#jcl .externalControl a.next, #jcl .externalControl a.prev, #jcl .externalControl a.go,
+#jcl .imageSliderExt a.next, #jcl .imageSliderExt a.prev, #jcl .imageSliderExt a.go
+{
+    margin: 0 5px 0 0;
+    padding: 7px 5px 0 5px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+#jcl .widget img {
+    cursor: pointer;
+}
+#jcl .mid {
+    margin-left: 50px;
+    width: 400px;
+    height: 300px;
+}
+#jcl .vertical {
+    margin-left: 170px;
+}
+
+#jcl .imageSlider .carousel>ul>li>img,
+#jcl .imageSliderExt .carousel>ul>li>img {
+    width: 400px;
+    height: 300px;
+}
+#jcl .imageSlider .carousel>ul>li>p,
+#jcl .imageSliderExt .carousel>ul>li>p {
+    width: 380px;
+    height: 280px;
+}
+
+/* Other common styles */
+
+.clear {
+    clear: both;
+}
