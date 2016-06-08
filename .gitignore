@@ -47,3 +47,5 @@ Temporary Items
 .apdisk
 
 assets/
+protected/runtime/application.log
+protected/runtime/application.log
