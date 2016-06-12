@@ -91,13 +91,13 @@
 									<li>
 										<a href="<?php echo Yii::app()->baseUrl ?>/" title="">Giới thiệu</a>
 										<ul>
-											<li><a href="<?php echo Yii::app()->baseUrl?>/" title="">Về Matcha</a></li>
-											<li><a href="<?php echo Yii::app()->baseUrl?>/" title="">Về chúng tôi</a></li>
+											<li><a href="<?php echo Yii::app()->baseUrl?>/pages/matcha" title="">Về Matcha</a></li>
+											<li><a href="<?php echo Yii::app()->baseUrl?>/pages/aboutUs" title="">Về chúng tôi</a></li>
 											
 										</ul>
 									</li>								
 									<li><a href="<?php echo Yii::app()->baseUrl ?>/site/blog" title="">Blog</a></li>
-									<li><a href="<?php echo Yii::app()->baseUrl ?>/site/" title="">Liên hệ</a></li>
+									<li><a href="<?php echo Yii::app()->baseUrl ?>/site/site/contact" title="">Liên hệ</a></li>
 									<li><a href="<?php echo Yii::app()->baseUrl ?>/" title="">Giỏ hàng</a></li>
 									
 								</ul>
