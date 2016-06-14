@@ -19,6 +19,7 @@
 					</li>
 					<li>
 						<a class="" href=""><i class="fa fa-inverse fa-google-plus"></i></a>
+
 					</li>
 				</ul>
 				<hr>
@@ -27,14 +28,16 @@
 					Thông tin liên hệ:<br/>
 					Trung tâm đào tạo quốc tế ITEC, trường đại học KHTN-ĐHQG TP.HCM <br>
 								Email: 1359024@itec.hcmus.edu.vn <br>
+
 				</div>
 			</div>
 		</div>
 
 
 		<div class="xs-12 md-8">
-			
+
 			<form action="" method="post">
+
 				<div class="xs-12 sm-6">
 					<div class="xs-11 align-center margin-auto text-center">
 						<div class="fourteen top-space auto-margin">
