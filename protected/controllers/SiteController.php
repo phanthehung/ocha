@@ -37,7 +37,7 @@ class SiteController extends Controller
                 'users'=>array('@'),
             ),
              array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','blog','error','product','detail','search'),
+				'actions'=>array('index','blog','error','product','detail','search','contact'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -167,6 +167,12 @@ class SiteController extends Controller
 			$products = Product::Model()->findAll("proTitle like \"%$search%\"");
 			$this->render('product',array('model'=>$products,'title'=>$title));
 		}
+	}
+
+	public function actionContact()
+	{
+
+		$this->render('contact');
 	}
 
 }

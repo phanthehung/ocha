@@ -97,7 +97,7 @@
 										</ul>
 									</li>								
 									<li><a href="<?php echo Yii::app()->baseUrl ?>/site/blog" title="">Blog</a></li>
-									<li><a href="<?php echo Yii::app()->baseUrl ?>/site/" title="">Liên hệ</a></li>
+									<li><a href="<?php echo Yii::app()->baseUrl ?>/site/contact" title="">Liên hệ</a></li>
 									<li><a href="<?php echo Yii::app()->baseUrl ?>/" title="">Giỏ hàng</a></li>
 									
 								</ul>
