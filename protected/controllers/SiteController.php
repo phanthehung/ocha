@@ -37,7 +37,7 @@ class SiteController extends Controller
                 'users'=>array('@'),
             ),
              array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','blog','error','product','detail','search','contact'),
+				'actions'=>array('index','blog','error','product','detail','search','contact','login'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -46,7 +46,33 @@ class SiteController extends Controller
         );
 	}
 
-
+		public function actionLogin()
+	{	
+		if (isset($_POST['username']) == null) {
+			$this->render('login');
+			return;
+		}
+		else{
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			$model = new LoginForm;
+			$model->username=$username;
+			$model->password=$password;
+			if (isset($_POST['rememberme'])) {
+				$model->rememberMe=true;
+			}
+			else{
+				$model->rememberMe=false;
+			}
+			
+			if($model->validate() && $model->login()) {
+			     $this->redirect(Yii::app()->baseUrl.'/site/index');
+			}else{
+				$this->render('login');
+			}		
+			
+		}
+	}
 
 
 	/**

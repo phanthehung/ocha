@@ -53,7 +53,7 @@
 							'items'=>array(               
 								array(
 									'label'=>'Tài khoản', 
-									'url'=>array('/site/'), 
+									'url'=>array('/site/login'), 
 									'itemOptions'=>array('style'=>'margin-right:30px'),		
 									'visible'=>!Yii::app()->user->checkAccess('account'),
 									),
