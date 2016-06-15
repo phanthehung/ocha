@@ -5,7 +5,9 @@
 		<font size="6">Thông tin liên hệ</font>
 	</div>
 	<hr>
+<center><font size="5"><?php if(Yii::app()->user->hasFlash('mss')){echo Yii::app()->user->getFlash('mss');}?></font></center>
 
+<br/>
 	<div class="row clearfix">
 		<div class="md-4 xs-12 text-center divider-right">
 			<div class="xs-11 align-center margin-auto text-center">
@@ -36,7 +38,7 @@
 
 		<div class="xs-12 md-8">
 
-			<form action="" method="post">
+			<form action="<?php echo Yii::app()->baseUrl?>/site/suggest" method="post">
 
 				<div class="xs-12 sm-6">
 					<div class="xs-11 align-center margin-auto text-center">

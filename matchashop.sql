@@ -294,3 +294,44 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suggest`
+--
+
+CREATE TABLE IF NOT EXISTS `suggest` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `state` int(11) NOT NULL,
+  `created` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `suggest`
+--
+
+INSERT INTO `suggest` (`id`, `username`, `email`, `content`, `state`, `created`) VALUES
+(1, 'phanthehung', '13444', 'this is a test', 2, '0000-00-00 00:00:00'),
+(2, 'sadasd', '1359013@itec.hcmus.edu.vn', 'asdsadasdasdsadasd', 2, '2015-11-24 17:07:57');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `suggest`
+--
+ALTER TABLE `suggest`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `suggest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--

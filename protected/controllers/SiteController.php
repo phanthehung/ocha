@@ -201,4 +201,25 @@ class SiteController extends Controller
 		$this->render('contact');
 	}
 
+
+	public function actionSuggest(){
+		if (!isset($_POST['email']) || !isset($_POST['content'])) {
+			Yii::app()->user->setFlash('mss','<div class="alert-error">Vui lòng điền đầy đủ thông tin</div>');
+		}
+		else{
+			$model = new Suggest;
+			$model->email = $_POST['email'];
+			$model->content = $_POST['content'];
+			$model->state = 0;
+			$model->created = date("Y-m-d H:i:s");
+			$model->username = $_POST['name'];
+			if ($model->save()) {
+				Yii::app()->user->setFlash('mss','<div class="alert-succeed">Cảm ơn bạn đã góp ý</div>');
+			}else{
+				Yii::app()->user->setFlash('mss','<div class="alert-error">Góp ý thất bại</div>');
+			}
+		}
+		$this->render('contact');	
+	}
+
 }

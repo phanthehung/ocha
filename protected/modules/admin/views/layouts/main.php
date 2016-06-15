@@ -100,6 +100,28 @@
                     </li>
                 </ul>
             </li>
+            <li class="openable <?php echo ($this->ID == 'suggest')?'active':''?>">
+                <a href="<?php echo Yii::app()->baseUrl.'/admin/suggest'?>">
+                    <span class="isw-print"></span><span class="text">Feedback</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/suggest/index/id/0'?>">
+                            <span class="icon-print"></span><span class="text">Góp ý mới</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/suggest/index/id/1'?>">
+                            <span class="icon-print"></span><span class="text">Đang xem xét </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/suggest/index/id/2'?>">
+                            <span class="icon-print"></span><span class="text">Đã giải quyết </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
         <div class="dr"><span></span></div>
