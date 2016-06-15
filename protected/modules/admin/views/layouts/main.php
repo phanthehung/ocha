@@ -84,17 +84,17 @@
                 </ul>
             </li>
             <li class="openable <?php echo ($this->ID == 'order')?'active':''?>">
-                <a href="<?php echo Yii::app()->baseUrl ?>">
+                <a href="<?php echo Yii::app()->baseUrl.'/admin/product'?>">
                     <span class="isw-print"></span><span class="text">Sản phẩm</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl ?>">
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/product/view/id/1' ?>">
                             <span class="icon-print"></span><span class="text">Matcha</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl ?>">
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/product/view/id/3' ?>">
                             <span class="icon-print"></span><span class="text">Dụng cụ pha trà</span>
                         </a>
                     </li>
