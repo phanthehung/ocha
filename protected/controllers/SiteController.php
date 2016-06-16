@@ -33,7 +33,7 @@ class SiteController extends Controller
 	{
 		return array(
              array('allow',
-                'actions'=>array( ),
+                'actions'=>array('signout' ),
                 'users'=>array('@'),
             ),
              array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -220,6 +220,21 @@ class SiteController extends Controller
 			}
 		}
 		$this->render('contact');	
+	}
+
+	public function actionSignout(){
+		$roleAssigned = Yii::app()->authManager->getRoles(Yii::app()->user->id);
+ 
+        if (!empty($roleAssigned)) { //checks that there are assigned roles
+            $auth = Yii::app()->authManager; //initializes the authManager
+            foreach ($roleAssigned as $n => $role) {
+                if ($auth->revoke($n, Yii::app()->user->id)) //remove each assigned role for this user
+                Yii::app()->authManager->save(); //again always save the result
+            }
+        }
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->baseUrl."/site/index");
+		Yii::app()->end();
 	}
 
 }
