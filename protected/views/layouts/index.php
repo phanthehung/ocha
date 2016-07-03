@@ -1,5 +1,5 @@
 <?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main'); ?>
+<!-- <?php $this->beginContent('//layouts/main'); ?> -->
 <div class="span-19">
 	<div id="content"> 
 		<?php echo $content; ?>
@@ -19,4 +19,4 @@
 	?>
 	</div><!-- sidebar -->
 </div>
-<?php $this->endContent(); ?>
+<!-- <?php $this->endContent(); ?> -->

@@ -3,7 +3,7 @@
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
  */
-class AController extends CController
+class AController extends RController
 {
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.

@@ -77,7 +77,7 @@ class RightsModule extends CWebModule
 	/**
 	* @property string the path to the application layout file.
 	*/
-	public $appLayout = 'application.views.layouts.main';
+	public $appLayout = 'admin.views.layouts.main';
 	/**
 	* @property string the style sheet file to use for Rights.
 	*/
@@ -149,6 +149,7 @@ class RightsModule extends CWebModule
 		$cs->registerCoreScript('jquery.ui');
 		$cs->registerScriptFile($assetsUrl.'/js/rights.js');
 		$cs->registerCssFile($assetsUrl.'/css/core.css');
+		
 
 		// Make sure we want to register a style sheet.
 		if( $this->cssFile!==false )
@@ -173,12 +174,14 @@ class RightsModule extends CWebModule
 		if( $this->_assetsUrl===null )
 		{
 			$assetsPath = Yii::getPathOfAlias('rights.assets');
+			$assetsPath2 = Yii::getPathOfAlias('admin.assets');
 
 			// We need to republish the assets if debug mode is enabled.
 			if( $this->debug===true )
 				$this->_assetsUrl = Yii::app()->getAssetManager()->publish($assetsPath, false, -1, true);
 			else
 				$this->_assetsUrl = Yii::app()->getAssetManager()->publish($assetsPath);
+				$this->_assetsUrl = Yii::app()->getAssetManager()->publish($assetsPath2);
 		}
 
 		return $this->_assetsUrl;
