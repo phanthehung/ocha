@@ -21,11 +21,7 @@ class ProductController extends AController
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',
-                'actions'=>array('index','view','detail'),
-                'roles'=>array('admin'),
-            ),          
+		return array(        
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -99,4 +95,89 @@ class ProductController extends AController
 			Yii::app()->end();
 		}
 	}
+
+		/**
+	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreate()
+	{
+		$model=new Product;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Product']))
+		{
+			$model->attributes=$_POST['Product'];
+			if($model->save()){
+				Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Tạo mới thành công.</div>');
+				$this->redirect(array('view','id'=>$model->proId));
+			}
+			else{
+				Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại</div>');
+				$this->render('create',array(
+					'model'=>$model,
+				));
+			}
+		}
+		else{
+			$this->render('create',array(
+				'model'=>$model,
+			));
+		}
+
+		
+	}
+
+	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionUpdate($id)
+	{
+		$model=$this->loadModel($id);
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Product']))
+		{
+			$model->attributes=$_POST['Product'];
+			if($model->save()){
+				$this->redirect(array('view','id'=>$model->proId));
+			}
+			else{
+				Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại</div>');
+				$this->render('update',array(
+					'model'=>$model,
+				));
+			}
+		}else{
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		}
+
+		
+	}
+
+	/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id)
+	{
+		if ($this->loadModel($id)->delete()) {
+			Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Xóa thành công.</div>');
+		}
+		else{
+			Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại</div>');
+		}
+
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+	}
+	
 }

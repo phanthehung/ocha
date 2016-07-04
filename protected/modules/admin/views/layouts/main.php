@@ -100,6 +100,11 @@
                     </li>
                 </ul>
             </li>
+            <li class="<?php echo ($this->ID == 'customer')?'active':''?>">
+                <a href="<?php echo Yii::app()->baseUrl.'/admin/customer'?>">
+                    <span class="isw-print"></span><span class="text">Thành viên</span>
+                </a>
+            </li>
             <li class="openable <?php echo ($this->ID == 'suggest')?'active':''?>">
                 <a href="<?php echo Yii::app()->baseUrl.'/admin/suggest'?>">
                     <span class="isw-print"></span><span class="text">Feedback</span>

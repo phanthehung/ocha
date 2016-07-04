@@ -40,9 +40,9 @@ class SiteController extends Controller
 				'actions'=>array('index','blog','error','product','detail','search','contact','login'),
 				'users'=>array('*'),
 			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+			// array('deny',  // deny all users
+			// 	'users'=>array('*'),
+			// ),
         );
 	}
 
