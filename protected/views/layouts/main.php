@@ -59,7 +59,7 @@
 									),
 								array(
 									'label'=>Yii::app()->user->checkAccess('account')?Yii::app()->user->username:"", 
-									'url'=>array('/site/'), 
+									'url'=>array('/site/account'), 
 									'itemOptions'=>array('style'=>'margin-right:30px'),
 									'visible'=>Yii::app()->user->checkAccess('account'),
 									),
@@ -100,7 +100,7 @@
 
 									<li><a href="<?php echo Yii::app()->baseUrl ?>/site/contact" title="">Liên hệ</a></li>
 
-									<li><a href="<?php echo Yii::app()->baseUrl ?>/" title="">Giỏ hàng</a></li>
+									<li><a href="<?php echo Yii::app()->baseUrl ?>/cart" title="">Giỏ hàng</a></li>
 									
 								</ul>
 								
@@ -131,7 +131,7 @@
 										),
 									array(
 										'label'=>Yii::app()->user->checkAccess('account')?Yii::app()->user->username:"", 
-										'url'=>array('/site/'), 
+										'url'=>array('/site/account'), 
 										'visible'=>Yii::app()->user->checkAccess('account'),
 										),
 									array(

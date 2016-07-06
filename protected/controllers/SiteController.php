@@ -33,7 +33,7 @@ class SiteController extends Controller
 	{
 		return array(
              array('allow',
-                'actions'=>array('signout' ),
+                'actions'=>array('account','signout','changePassword','update'),
                 'users'=>array('@'),
             ),
              array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -270,5 +270,57 @@ class SiteController extends Controller
 	    	}
 	    }
 	    $this->redirect(Yii::app()->baseUrl."/site/signup");		
+	}
+
+	public function actionAccount(){
+		$this->render('account');
+	}
+
+	public function actionUpdate(){
+		if(isset($_POST['username'])){
+			$user = Customer::model()->find("id = ". Yii::app()->user->id);
+			$user->username = $_POST['username'];
+			$user->email = $_POST['email'];
+			$user->phone = $_POST['phone'];
+			$user->address = $_POST['address'];
+			if ($user->save()) {
+				Yii::app()->user->setFlash('mss','<div class="alert-succeed">Cập nhật thành công</div>');
+				Yii::app()->user->username = $user->username;
+				Yii::app()->user->phone = $user->phone;
+				Yii::app()->user->email = $user->email;
+				Yii::app()->user->address = $user->address;
+			}
+			else{
+				Yii::app()->user->setFlash('mss','<div class="alert-error">Cập nhật thất bại</div>');
+			}
+			
+		}
+		$this->render("update");
+	}
+	public function actionChangePassword(){
+		if (isset($_POST['oldPassword'])) {
+			$oldPassword = $_POST['oldPassword'];
+			$user = Customer::model()->find("id = ". Yii::app()->user->id);
+			$currPassword = $user->password;
+			if ($currPassword == md5($oldPassword)) {
+				$newPassword = $_POST['newPassword'];
+				$confirm = $_POST['confirm'];
+				if ($newPassword == $confirm) {
+					$user->password = md5($newPassword);
+					if ($user->save()) {
+						Yii::app()->user->setFlash('mss','<div class="alert-succeed">Thay đổi mật khẩu thành công</div>');
+					}else{
+						Yii::app()->user->setFlash('mss','<div class="alert-error">Thay đổi mật khẩu thất bại</div>');
+					}
+				}else{
+					Yii::app()->user->setFlash('mss','<div class="alert-error">Xác nhận lại mất khẩu</div>');
+				}
+			}
+			else{
+				Yii::app()->user->setFlash('mss','<div class="alert-error">Mật khẩu không đúng</div>');
+			}			
+		}
+		
+		$this->render('changePassword');
 	}
 }
