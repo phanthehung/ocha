@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2016 at 04:00 PM
+-- Generation Time: Jul 08, 2016 at 04:29 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -39,9 +39,8 @@ CREATE TABLE IF NOT EXISTS `authassignment` (
 
 INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 ('admin', '1', NULL, 'N;'),
-('custom', '3', NULL, 'N;'),
-('guest', '2', NULL, 'N;'),
-('guest', '3', NULL, 'N;');
+('custom2', '3', NULL, 'N;'),
+('member', '4', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -62,8 +61,7 @@ CREATE TABLE IF NOT EXISTS `authitem` (
 --
 
 INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
-('account', 0, 'account', NULL, 'N;'),
-('admin', 1, 'Admin', NULL, 'N;'),
+('admin', 2, 'admin', NULL, NULL),
 ('Admin.Product.*', 0, NULL, NULL, 'N;'),
 ('Admin.Product.Detail', 0, NULL, NULL, 'N;'),
 ('Admin.Product.Index', 0, NULL, NULL, 'N;'),
@@ -77,8 +75,8 @@ INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 ('Admin.Suggest.View', 0, NULL, NULL, 'N;'),
 ('custom', 2, 'custom', NULL, 'N;'),
 ('custom2', 2, 'custom2', NULL, 'N;'),
-('guest', 2, '', NULL, 'N;'),
-('signout', 0, 'sign out', NULL, 'N;');
+('custom3', 2, 'custom3', NULL, 'N;'),
+('member', 2, 'member', NULL, 'N;');
 
 -- --------------------------------------------------------
 
@@ -96,16 +94,11 @@ CREATE TABLE IF NOT EXISTS `authitemchild` (
 --
 
 INSERT INTO `authitemchild` (`parent`, `child`) VALUES
-('custom', 'account'),
-('guest', 'account'),
-('custom', 'admin'),
-('custom2', 'admin'),
 ('custom', 'Admin.Product.*'),
 ('custom', 'Admin.Product.Detail'),
 ('custom', 'Admin.Product.Index'),
 ('custom', 'Admin.Product.View'),
-('admin', 'guest'),
-('guest', 'signout');
+('custom', 'custom2');
 
 -- --------------------------------------------------------
 
@@ -121,19 +114,17 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `saleoff` tinyint(1) NOT NULL DEFAULT '0',
-  `role_id` int(11) NOT NULL DEFAULT '2'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `role_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'member'
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `email`, `username`, `password`, `phone`, `address`, `saleoff`, `role_id`) VALUES
-(0, 'phanthehung.29.03@gmail.com', 'admin123', '202cb962ac59075b964b07152d234b70', '', '', 0, 2),
-(1, '', 'Admin', '202cb962ac59075b964b07152d234b70', '12345678', '86 Nguyễn Thông P9 Q3', 0, 1),
-(3, '1359013@itec.hcmus.edu.vn', 'phanthehung', '202cb962ac59075b964b07152d234b70', '1234567890', '', 0, 2),
-(4, '1359013@itec.hcmus.edu.vn', 'adminsad', '202cb962ac59075b964b07152d234b70', '', '', 0, 2),
-(5, '', 'admindddd', '202cb962ac59075b964b07152d234b70', '', '', 0, 2);
+INSERT INTO `customer` (`id`, `email`, `username`, `password`, `phone`, `address`, `saleoff`, `role_name`) VALUES
+(1, '', 'Admin', '81dc9bdb52d04dc20036dbd8313ed055', '1234567833', '86 Nguyễn Thông P9 Q3', 0, 'admin'),
+(3, '1359013@itec.hcmus.edu.vn', 'phanthehung', '202cb962ac59075b964b07152d234b70', '1234567890', '', 0, 'custom2'),
+(4, '1359013@itec.hcmus.edu.vn', 'pthung', '81dc9bdb52d04dc20036dbd8313ed055', '', '', 0, 'member');
 
 -- --------------------------------------------------------
 
@@ -284,27 +275,6 @@ CREATE TABLE IF NOT EXISTS `rights` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
---
-
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int(11) NOT NULL,
-  `alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `alias`, `title`, `level`) VALUES
-(1, 'admin', 'admin', 10),
-(2, 'guest', 'Khách', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `suggest`
 --
 
@@ -385,12 +355,6 @@ ALTER TABLE `rights`
   ADD PRIMARY KEY (`itemname`);
 
 --
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `suggest`
 --
 ALTER TABLE `suggest`
@@ -404,7 +368,7 @@ ALTER TABLE `suggest`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `news`
 --
