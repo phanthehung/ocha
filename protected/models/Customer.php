@@ -11,7 +11,7 @@
  * @property string $phone
  * @property string $address
  * @property integer $saleoff
- * @property integer $role_id
+ * @property string $role_name
  */
 class Customer extends CActiveRecord
 {
@@ -32,11 +32,12 @@ class Customer extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('username, password', 'required'),
-			array('saleoff, role_id', 'numerical', 'integerOnly'=>true),
+			array('saleoff', 'numerical', 'integerOnly'=>true),
 			array('email, username, password, phone, address', 'length', 'max'=>255),
+			array('role_name', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, email, username, password, phone, address, saleoff, role_id', 'safe', 'on'=>'search'),
+			array('id, email, username, password, phone, address, saleoff, role_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,7 +49,7 @@ class Customer extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'role' => array(self::BELONGS_TO, 'Roles', 'role_id'),
+			'role' => array(self::BELONGS_TO, 'Authitem', 'role_name'),
 		);
 	}
 
@@ -65,7 +66,7 @@ class Customer extends CActiveRecord
 			'phone' => 'Phone',
 			'address' => 'Address',
 			'saleoff' => 'Saleoff',
-			'role_id' => 'Role',
+			'role_name' => 'Role Name',
 		);
 	}
 
@@ -94,7 +95,7 @@ class Customer extends CActiveRecord
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('saleoff',$this->saleoff);
-		$criteria->compare('role_id',$this->role_id);
+		$criteria->compare('role_name',$this->role_name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -110,5 +111,30 @@ class Customer extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function updateAssignmentItem($type,$id){
+		if ($type==1) {
+			return Yii::app()->db->createCommand()->update('authassignment',array('itemname'=>$this->role_name),"userid=:userid",array(':userid'=>$this->id));
+		} else if($type==0) {
+			return Yii::app()->db->createCommand()->insert('authassignment',array('itemname'=>$this->role_name,'userid'=>$this->id,'bizrule'=>'','data'=>''));
+		}else{
+			return Yii::app()->db->createCommand()->delete('authassignment',"userid=:userid",array(':userid'=>$id));
+		}
+		
+		
+	}
+
+	public function getRolesList(){
+		$results = Yii::app()->db->createCommand()
+		    ->select('name')
+		    ->from('authitem')
+		    ->where('type=2 and name!="admin"')
+		    ->queryColumn();
+		$roles=array();
+		foreach ($results as $role ) {
+	    	$roles["$role"]=$role;
+	    }
+		return $roles;
 	}
 }

@@ -243,7 +243,6 @@ class SiteController extends Controller
 			return;
 		}
 		$username = $_POST['username'];
-			// $password = md5($_POST['password']);
 		$criteria = new CDbCriteria;
 		$criteria->condition =" username = :username";
 		$criteria->params = array(':username' => $username);
@@ -259,6 +258,7 @@ class SiteController extends Controller
 			$user->phone = $_POST['phone'];
 			$user->address = $_POST['address'];			
 			if ($user->save()) {
+				$user->updateAssignmentItem(0,0);
 				Yii::app()->user->setFlash('mss','<div class="alert-succeed">Bạn đã đăng ký tài khoản thành công</div>');
 				$this->redirect(Yii::app()->baseUrl."/site/login");
 				return;

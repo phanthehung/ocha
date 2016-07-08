@@ -50,9 +50,9 @@
 	</div>
 
 	 <div class="row-form">
-		<div class="span3"><?php echo $form->labelEx($model,'role_id'); ?></div>
-		 <div class="span9"><?php echo $form->dropDownList($model,'role_id',Yii::app()->params['roles'],array()); ?>
-		<?php echo $form->error($model,'role_id'); ?></div><div class="clear"></div>
+		<div class="span3"><?php echo $form->labelEx($model,'role_name'); ?></div>
+		 <div class="span9"><?php echo $form->dropDownList($model,'role_name',$roles,array()); ?>
+		<?php echo $form->error($model,'role_name'); ?></div><div class="clear"></div>
 	</div>
 
 	<div class="row buttons">

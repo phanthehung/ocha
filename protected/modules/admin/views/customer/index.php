@@ -46,9 +46,8 @@ $this->breadcrumbs=array(
                         'htmlOptions'=>array('class'=>'ct'),
                     ),
                     array(
-                        'name'=>'role_id',
+                        'name'=>'role_name',
                         'type'=>'raw',
-                        'value'=>'$data->role->alias',
                         'htmlOptions'=>array('class'=>'ct'),
                     ),
                     array(

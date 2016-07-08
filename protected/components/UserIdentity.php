@@ -29,8 +29,8 @@ class UserIdentity extends CUserIdentity
 			if ($user->password == md5($this->password)) {
 				$this->_id = $user->id;
 				$auth = Yii::app()->authManager;
-				if (!$auth->isAssigned($user->role->alias, $this->_id)) {
-					if ($auth->assign($user->role->alias, $this->_id)) {
+				if (!$auth->isAssigned($user->role->name, $this->_id)) {
+					if ($auth->assign($user->role->name, $this->_id)) {
 						Yii::app()->authManager->save();
 					}
 				}

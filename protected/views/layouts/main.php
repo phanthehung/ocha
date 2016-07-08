@@ -55,19 +55,19 @@
 									'label'=>'Tài khoản', 
 									'url'=>array('/site/login'), 
 									'itemOptions'=>array('style'=>'margin-right:30px'),		
-									'visible'=>!Yii::app()->user->checkAccess('account'),
+									'visible'=>Yii::app()->user->isGuest,
 									),
 								array(
-									'label'=>Yii::app()->user->checkAccess('account')?Yii::app()->user->username:"", 
+									'label'=>Yii::app()->user->isGuest?"":Yii::app()->user->username, 
 									'url'=>array('/site/account'), 
 									'itemOptions'=>array('style'=>'margin-right:30px'),
-									'visible'=>Yii::app()->user->checkAccess('account'),
+									'visible'=>!Yii::app()->user->isGuest,
 									),
 								array(
 									'label'=>'Đăng xuất', 
 									'url'=>array('/site/signout'), 
 									'itemOptions'=>array('style'=>'margin-right:30px'),
-									'visible'=>Yii::app()->user->checkAccess('signout')
+									'visible'=>!Yii::app()->user->isGuest
 									),
 								array('label'=>"$temp")            
 								),  
@@ -126,13 +126,13 @@
 										),
 									array(
 										'label'=>"Đăng nhập", 
-										'url'=>array('/site/'), 
-										'visible'=>!Yii::app()->user->checkAccess('account'),
+										'url'=>array('/site/login'), 
+										'visible'=>Yii::app()->user->isGuest,
 										),
 									array(
-										'label'=>Yii::app()->user->checkAccess('account')?Yii::app()->user->username:"", 
+										'label'=>Yii::app()->user->isGuest?"":Yii::app()->user->username, 
 										'url'=>array('/site/account'), 
-										'visible'=>Yii::app()->user->checkAccess('account'),
+										'visible'=>!Yii::app()->user->isGuest,
 										),
 									array(
 										'label'=>"Sản phẩm", 
@@ -177,7 +177,7 @@
 									array(
 										'label'=>"Đăng xuất", 
 										'url'=>array('/site/'), 
-										'visible'=>Yii::app()->user->checkAccess('signout'),
+										'visible'=>!Yii::app()->user->isGuest,
 										),
 									array(
 										'label'=>'Giỏ hàng', 

@@ -26,8 +26,13 @@ $this->menu=array(
 		'username',
 		'password',
 		'phone',
-		'address',
-		'saleoff',
-		'role_id',
+		array(
+			'label'=>'Địa chỉ',
+			'value'=>$model->address==''?'Không có':$model->address,
+		),
+		array(
+			'label'=>'Vai trò',
+			'value'=>$model->role_name,
+		)
 	),
 )); ?>

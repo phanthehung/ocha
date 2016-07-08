@@ -55,6 +55,7 @@ class CustomerController extends AController
 			$model->attributes=$_POST['Customer'];
 			$model->password = md5($model->password);
 			if($model->save()){
+				$model->updateAssignmentItem(0,0);
 				Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Tạo mới thành công.</div>');
 				$this->redirect(array('view','id'=>$model->id));
 			}else{
@@ -64,8 +65,10 @@ class CustomerController extends AController
 				));
 			}
 		}else{
+			$roles = Customer::model()->getRolesList();
 			$this->render('create',array(
 				'model'=>$model,
+				'roles'=>$roles
 			));
 		}
 	}
@@ -90,6 +93,8 @@ class CustomerController extends AController
 			}
 			
 			if($model->save()){
+				 // echo $this->updateAssignmentItem(10,$model->role_name);
+				$model->updateAssignmentItem(1,0);
 				Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Cập nhập thành công.</div>');
 				$this->redirect(array('view','id'=>$model->id));
 			}else{
@@ -99,8 +104,10 @@ class CustomerController extends AController
 				));
 			}
 		}else{
-			$this->render('create',array(
+		    $roles = Customer::model()->getRolesList();
+			$this->render('update',array(
 				'model'=>$model,
+				'roles'=>$roles,
 			));
 		}
 	}
@@ -111,8 +118,9 @@ class CustomerController extends AController
 	 * @param integer $id the ID of the model to be deleted
 	 */
 	public function actionDelete($id)
-	{
+	{	
 		if ($this->loadModel($id)->delete()) {
+			$model=Customer::model()->updateAssignmentItem(2,$id);
 			Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Xóa thành công.</div>');
 		}else{
 			Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại</div>');
