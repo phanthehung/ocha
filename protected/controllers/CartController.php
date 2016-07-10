@@ -34,18 +34,19 @@ class CartController extends Controller
 		if (isset($_POST['id'])) {
 			$id = $_POST['id'];
 			$value = $_POST['value'];
-			if ($value > -1) {
+			if (!is_numeric($value) ) {
+				return;
+			}		
+			if ($value > -1 && is_int($value*1)) {
 				$session = Yii::app()->session;
-			$session->open();
-			if (isset($session['cart'])) {
-				$cart = $session['cart'];				
-				$cart["i".$id]->quantity = $value;	
-												
-			}
-			echo '{"succed":"true"}';
-			$session->close();
-			}
-			
+				$session->open();
+				if (isset($session['cart'])) {
+					$cart = $session['cart'];				
+					$cart["i".$id]->quantity = $value;								
+				}
+				echo '{"succed":"true"}';
+				$session->close();
+			}			
 		}		
 	}
 

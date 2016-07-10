@@ -37,6 +37,7 @@
                     		
                     	
 	                   	<?php foreach ($cart as $value): ?>
+	                   		<?php if ($value->quantity > 0): ?>         
 	                        <div class="xs-2 hidden-sm">
 	                            <img style="width:92%" src="<?php echo $value->proImg ?>">
 	                        </div>
@@ -60,6 +61,7 @@
 	                        </div>
 	                        <?php $total += $value->proPrice*$value->quantity; ?>
 	                        <hr>
+	                        <?php endif ?>
 	                   	<?php endforeach ?>
 	                   	<div class="clear"></div>
 	                   	<div>
@@ -102,7 +104,7 @@
         		'dataType':'json',
                 'data':{'id':$id,'value':$value},
                 'success':function($id){ location.reload(); },
-                'error':function($id){ alert("Failed!"); },
+                'error':function($id){ alert("Vui lòng nhập vào số lượng sản phẩm mong muốn!"); },
                 'url':"<?php echo Yii::app()->baseUrl?>/cart/update",
                 'cache':false
             });

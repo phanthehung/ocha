@@ -184,7 +184,7 @@ class SiteController extends Controller
 	}
 
 	public function actionSearch(){
-		if (!isset($_POST['search'])) {
+		if (!isset($_POST['search']) || $_POST['search'] == "" || $_POST['search'] == NULL) {
 			$this->redirect(Yii::app()->request->urlReferrer);
 		}
 		else{
