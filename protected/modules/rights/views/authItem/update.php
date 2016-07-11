@@ -13,13 +13,14 @@
 
 	<?php $this->renderPartial('_form', array('model'=>$formModel)); ?>
 
-	<div class="relations span-11 last">
-
+	<div class="workplace">
+	
 		<h3><?php echo Rights::t('core', 'Relations'); ?></h3>
 
 		<?php if( $model->name!==Rights::module()->superuserName ): ?>
 
-			<div class="parents">
+		<div class="span11">
+			<div class="span4">
 
 				<h4><?php echo Rights::t('core', 'Parents'); ?></h4>
 
@@ -28,7 +29,7 @@
 					'template'=>'{items}',
 					'hideHeader'=>true,
 					'emptyText'=>Rights::t('core', 'This item has no parents.'),
-					'htmlOptions'=>array('class'=>'grid-view parent-table mini'),
+					'htmlOptions'=>array('class'=>''),
 					'columns'=>array(
     					array(
     						'name'=>'name',
@@ -55,7 +56,7 @@
 
 			</div>
 
-			<div class="children">
+			<div class="span4">
 
 				<h4><?php echo Rights::t('core', 'Children'); ?></h4>
 
@@ -89,27 +90,24 @@
 					)
 				)); ?>
 
-			</div>
-
-			<div class="addChild">
-
-				<h5><?php echo Rights::t('core', 'Add Child'); ?></h5>
-
+			</div>			
+		</div>
+		<br/>
+		<div class="span11">
+			<div class="span3"><h5><?php echo Rights::t('core', 'Add Child'); ?></h5></div>
+			<div class="span9">
 				<?php if( $childFormModel!==null ): ?>
-
 					<?php $this->renderPartial('_childForm', array(
 						'model'=>$childFormModel,
 						'itemnameSelectOptions'=>$childSelectOptions,
-					)); ?>
-
-				<?php else: ?>
-
-					<p class="info"><?php echo Rights::t('core', 'No children available to be added to this item.'); ?>
-
-				<?php endif; ?>
-
+					)); 
+				?>
 			</div>
-
+			<?php else: ?>
+				<p class="info"><?php echo Rights::t('core', 'No children available to be added to this item.'); ?>
+			<?php endif; ?>	
+		</div>
+		
 		<?php else: ?>
 
 			<p class="info">
@@ -117,8 +115,6 @@
 				<?php echo Rights::t('core', 'Super users are always granted access implicitly.'); ?>
 			</p>
 
-		<?php endif; ?>
-
+		<?php endif; ?>		
 	</div>
-
 </div>

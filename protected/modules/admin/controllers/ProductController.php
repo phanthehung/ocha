@@ -28,23 +28,6 @@ class ProductController extends AController
 		);
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->pageTitle = "OCHA";
-       	$this->breadcrumbs = array('Matcha'=>array('index'));
-       	$model = new Product('search');
-       	$model->unsetAttributes();
-       	if(isset($_GET['Product'])){
-            $model->attributes = $_GET['Product'];
-       	}
-       	$model->category = $id;
-       	$this->render('index',array('model' => $model));
-	}
-
 	public function actionDetail($id){
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
@@ -55,7 +38,7 @@ class ProductController extends AController
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex($id=1)
 	{
 		$this->pageTitle = "OCHA";
        	$this->breadcrumbs = array('Matcha'=>array('index'));
@@ -64,7 +47,7 @@ class ProductController extends AController
        	if(isset($_GET['Product'])){
             $model->attributes = $_GET['Product'];
        	}
-       	$model->category = 1;
+       	$model->category = $id;
        	$this->render('index',array('model' => $model));
 	}
 

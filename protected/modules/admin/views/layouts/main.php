@@ -89,12 +89,12 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl.'/admin/product/view/id/1' ?>">
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/product/index/id/1' ?>">
                             <span class="icon-print"></span><span class="text">Matcha</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl.'/admin/product/view/id/3' ?>">
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/product/index/id/3' ?>">
                             <span class="icon-print"></span><span class="text">Dụng cụ pha trà</span>
                         </a>
                     </li>
@@ -103,6 +103,11 @@
             <li class="<?php echo ($this->ID == 'customer')?'active':''?>">
                 <a href="<?php echo Yii::app()->baseUrl.'/admin/customer'?>">
                     <span class="isw-print"></span><span class="text">Thành viên</span>
+                </a>
+            </li>
+             <li class="<?php echo ($this->ID == 'customer')?'active':''?>">
+                <a href="<?php echo Yii::app()->baseUrl.'/rights/authItem/roles'?>">
+                    <span class="isw-print"></span><span class="text">Chức vụ</span>
                 </a>
             </li>
             <li class="openable <?php echo ($this->ID == 'suggest')?'active':''?>">

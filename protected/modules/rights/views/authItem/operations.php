@@ -22,6 +22,13 @@
 	    'emptyText'=>Rights::t('core', 'No operations found.'),
 	    'htmlOptions'=>array('class'=>'grid-view operation-table sortable-table'),
 	    'columns'=>array(
+            // array(
+            //     'name'=>'description',
+            //     'header'=>Rights::t('core', 'Description'),
+            //     'type'=>'raw',
+            //     'htmlOptions'=>array('class'=>'name-column'),
+            //     'value'=>'$data->getGridNameLink()',
+            // ),
 	    	array(
     			'name'=>'name',
     			'header'=>Rights::t('core', 'Name'),
