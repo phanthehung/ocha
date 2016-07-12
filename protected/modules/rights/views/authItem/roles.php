@@ -32,7 +32,7 @@
                     			'header'=>Rights::t('core', 'Name'),
                     			'type'=>'raw',
                     			'htmlOptions'=>array('class'=>'name-column'),
-                    			'value'=>'$data->getGridNameLink()',
+                    			// 'value'=>'$data->getGridNameLink()',
                     		),
                     		array(
                     			'name'=>'description',
@@ -54,15 +54,47 @@
                     			'htmlOptions'=>array('class'=>'data-column'),
                     			'visible'=>Rights::module()->enableBizRuleData===true,
                     		),
-                    		array(
-                    			'header'=>'&nbsp;',
-                    			'type'=>'raw',
-                    			'htmlOptions'=>array('class'=>'actions-column'),
-                    			'value'=>'$data->getDeleteRoleLink()',
-                    		),
+                    		// array(
+                      //           'header'=>'&nbsp;',
+                      //           'type'=>'raw',
+                      //           'htmlOptions'=>array('class'=>'actions-column'),
+                      //           'value'=>'$data->getDeleteRoleLink()',
+                      //       ),
+                            array(
+                                'class'=>'CButtonColumn',
+                                'template'=>'{update}{delete}',
+                                'buttons' => array(
+                                    'update'=>array(
+                                        'label'=>'UPDATE',
+                                        'imageUrl' => false,
+                                        'url'=>'$data->getAuthItemUpdateLink()',
+                                        'options'=>array( 'title'=>'Update','class'=>'btn btn-warning','style' => 'margin-left:5px'),
+                                    ),
+                                    'delete'=>array(
+                                        'label'=>'DELETE',
+                                        'imageUrl' => false,
+                                        'url' =>'$data->getAuthItemDeleteLink()',
+                                        'options'=>array( 'title'=>'Delete','class'=>'btn btn-success','style' => 'margin-left:5px'),
+                                    ), 
+                                ),
+                                'htmlOptions'=>array('style'=>'width:180px'),
+                            ),
                 	    )
                 	)); ?>
         	</div>
         </div>
     </div>                
 </div>
+<!-- <button onclick="jQuery.ajax({
+'type':'post',
+'data':{'name':'custom5'},
+'success':function(){
+    alert('OK');
+},
+'error':function(){
+    alert('not OK');
+},'complete':function(){
+    alert('not OK');
+},
+'url':'/ocha/index.php/rights/authItem/delete',
+'cache':false});">dsa</button> -->

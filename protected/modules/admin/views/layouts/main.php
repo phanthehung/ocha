@@ -105,10 +105,22 @@
                     <span class="isw-print"></span><span class="text">Thành viên</span>
                 </a>
             </li>
-             <li class="<?php echo ($this->ID == 'customer')?'active':''?>">
-                <a href="<?php echo Yii::app()->baseUrl.'/rights/authItem/roles'?>">
-                    <span class="isw-print"></span><span class="text">Chức vụ</span>
+             <li class="openable <?php echo ($this->ID == 'authItem')?'active':''?>">
+                <a href="">
+                    <span class="isw-print"></span><span class="text">Phân quyền</span>
                 </a>
+                <ul>
+                    <li>
+                        <a href="<?php echo Yii::app()->baseUrl.'/rights/authItem/roles'?>">
+                            <span class="icon-print"></span><span class="text">Vai trò</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo Yii::app()->baseUrl.'/rights/authItem/permissions'?>">
+                            <span class="icon-print"></span><span class="text">Cấp quyền</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="openable <?php echo ($this->ID == 'suggest')?'active':''?>">
                 <a href="<?php echo Yii::app()->baseUrl.'/admin/suggest'?>">

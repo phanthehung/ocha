@@ -41,6 +41,23 @@ class RAuthItemBehavior extends CBehavior
 		return (Rights::module()->displayDescription===true && $this->owner->description!==null) ? $this->owner->description : $this->owner->name;
 	}
 
+
+	public function getAuthItemUpdateLink()
+	{ 
+		if( $this->owner->name!==Rights::module()->superuserName )
+		{
+			return Yii::app()->baseUrl.'/rights/authItem/update?name='.urlencode($this->owner->name);
+		}
+	}
+
+	public function getAuthItemDeleteLink()
+	{ 
+		if( $this->owner->name!==Rights::module()->superuserName )
+		{
+			return Yii::app()->baseUrl.'/rights/authItem/delete?name='.urlencode($this->owner->name);
+		}
+	}
+
 	/**
 	* Returns the link to update the item.
 	* @return string the markup.
@@ -144,6 +161,26 @@ class RAuthItemBehavior extends CBehavior
 				'csrf'=>Yii::app()->request->enableCsrfValidation,
 			));
 		}
+
+			// return CHtml::ajaxButton(Rights::t('core', 'Delete'),
+			// 	array('authItem/delete'),
+			// 	array('type'=>'post',
+			// 		'data'=> array('name'=>urlencode($this->owner->name)),
+			// 		'success'=>'js:function(){
+						
+			// 				alert("OK");
+						
+			// 		}',
+			// 		'error'=>'js:function(){
+			// 			alert("not OK");
+			// 		}',
+			// 		'complete'=>'js:function(){
+			// 			alert("not OK");
+			// 		}',
+			// 	),
+			// 	array(
+			// 	'class'=>'delete-link',)
+			// );
 	}
 
 	/**

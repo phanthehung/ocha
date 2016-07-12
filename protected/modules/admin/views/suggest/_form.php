@@ -48,10 +48,6 @@
 		 <div class="span9"><?php echo $form->dropDownList($model,'state',Yii::app()->params['state.suggest'],array()); ?>
 		<?php echo $form->error($model,'state'); ?></div><div class="clear"></div>
 	</div>
-
-	<div class="row buttons">
-		
-	</div>
 	<center>
 		<div class="row-form">
 	        <div class="span3"></div>

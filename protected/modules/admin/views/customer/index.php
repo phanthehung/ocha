@@ -24,7 +24,7 @@ $this->breadcrumbs=array(
             <div class="clear"></div>
         </div>
         <div class="block-fluid">
- <?php
+        <?php
             $this->widget('zii.widgets.grid.CGridView', array(
             	'id'=>'data-grid-document',
             	'dataProvider'=>$model->search(),

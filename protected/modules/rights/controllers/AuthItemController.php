@@ -86,6 +86,7 @@ class AuthItemController extends RController
     			'name'=>'description',
 	    		'header'=>Rights::t('core', 'Item'),
 				'type'=>'raw',
+				// 'value'=>'',
     			'htmlOptions'=>array(
     				'class'=>'permission-column',
     				'style'=>'width:25%',
@@ -374,9 +375,18 @@ class AuthItemController extends RController
 	 */
 	public function actionDelete()
 	{
-		// We only allow deletion via POST request
-		if( Yii::app()->request->isPostRequest===true )
-		{
+		// echo "<script type='text/javascript' charset='utf-8'>
+		// console.log('dsadsa');
+
+		// </script>";
+		// // Yii::app()->request->enableCsrfValidation = false;
+		// echo '{"succed":"true"}';
+		// Yii::app()->db->createCommand()->insert('authitem',array('name'=>'dsa','type'=>'dsa','bizrule'=>'','description'=>'ads','data'=>'dsa'));
+		// return '{"succed":"true"}';
+		// return '{"succed":"true"}';
+		// // We only allow deletion via POST request
+		// if( Yii::app()->request->isPostRequest===true )
+		// {
 			$itemName = $this->getItemName();
 			
 			// Load the item and save the name for later use
@@ -392,13 +402,16 @@ class AuthItemController extends RController
 			);
 
 			// If AJAX request, we should not redirect the browser
-			if( isset($_POST['ajax'])===false )
+			if( isset($_POST['ajax'])===false ){
 				$this->redirect(Yii::app()->user->getRightsReturnUrl(array('authItem/permissions')));
-		}
-		else
-		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
-		}
+			}else{
+				return 'success';
+			}
+		// }
+		// else
+		// {
+		// 	throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+		// }
 	}
 
 	/**
@@ -501,7 +514,13 @@ class AuthItemController extends RController
 	*/
 	public function getItemName()
 	{
-		return isset($_GET['name'])===true ? urldecode($_GET['name']) : null;
+		if (isset($_GET['name'])===true) {
+			return urldecode($_GET['name']);
+		}else if (isset($_POST['name'])===true) {
+			return urldecode($_POST['name']);
+		}else{
+			return null;
+		}
 	}
 	
 	/**
