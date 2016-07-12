@@ -61,7 +61,9 @@ class AuthItemController extends RController
 					'revoke',
 					'sortable',
 				),
-				'users'=>$this->_authorizer->getSuperusers(),
+				// 'users'=>$this->_authorizer->getSuperusers(),
+				// 'users'=>array($this->_authorizer->superuserName),
+				'roles'=>array($this->_authorizer->superuserName),
 			),
 			array('deny', // Deny all users
 				'users'=>array('*'),

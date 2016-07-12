@@ -50,7 +50,7 @@ class UserIdentity extends CUserIdentity
 				$this->setState('email', $user->email);
 				$this->setState('phone', $user->phone);
 				$this->setState('id', $user->id);
-				// $this->setState('role', $user->role->alias);
+				$this->setState('role', $user->role->name);
 
 				$this->errorCode = self::ERROR_NONE;
 			}else{

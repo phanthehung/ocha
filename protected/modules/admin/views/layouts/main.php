@@ -57,28 +57,23 @@
                 </a>
             </li>
             <li class="openable <?php echo ($this->ID == 'order')?'active':''?>">
-                <a href="<?php echo Yii::app()->baseUrl?>">
+                <a href="<?php echo Yii::app()->baseUrl.'/admin/order'?>">
                     <span class="isw-print"></span><span class="text">Đơn hàng</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl ?>">
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/order/index/0' ?>">
                             <span class="icon-print"></span><span class="text">Đơn hàng mới</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl ?>">
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/order/index/1' ?>">
                             <span class="icon-print"></span><span class="text">Đơn hàng đã giao </span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl ?>">
+                        <a href="<?php echo Yii::app()->baseUrl.'/admin/order/index/2' ?>">
                             <span class="icon-print"></span><span class="text">Đơn hàng đã hủy </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo Yii::app()->baseUrl ?>">
-                            <span class="icon-print"></span><span class="text">Thống kê </span>
                         </a>
                     </li>
                 </ul>
@@ -105,7 +100,8 @@
                     <span class="isw-print"></span><span class="text">Thành viên</span>
                 </a>
             </li>
-             <li class="openable <?php echo ($this->ID == 'authItem')?'active':''?>">
+            <?php if (Rights::module()->superuserName==Yii::app()->user->getState('role')): ?>
+                <li class="openable <?php echo ($this->ID == 'authItem')?'active':''?>">
                 <a href="">
                     <span class="isw-print"></span><span class="text">Phân quyền</span>
                 </a>
@@ -122,6 +118,7 @@
                     </li>
                 </ul>
             </li>
+            <?php endif ?>
             <li class="openable <?php echo ($this->ID == 'suggest')?'active':''?>">
                 <a href="<?php echo Yii::app()->baseUrl.'/admin/suggest'?>">
                     <span class="isw-print"></span><span class="text">Feedback</span>

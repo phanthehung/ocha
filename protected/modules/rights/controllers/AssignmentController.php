@@ -48,7 +48,8 @@ class AssignmentController extends RController
 					'user',
 					'revoke',
 				),
-				'users'=>$this->_authorizer->getSuperusers(),
+				// 'users'=>$this->_authorizer->getSuperusers(),
+				'roles'=>array($this->_authorizer->superuserName),
 			),
 			array('deny', // Deny all users
 				'users'=>array('*'),

@@ -53,24 +53,25 @@ class CustomerController extends AController
 		if(isset($_POST['Customer']))
 		{
 			$model->attributes=$_POST['Customer'];
-			$model->password = md5($model->password);
-			if($model->save()){
-				$model->updateAssignmentItem(0,0);
-				Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Tạo mới thành công.</div>');
-				$this->redirect(array('view','id'=>$model->id));
-			}else{
-				Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại sau</div>');
-				$this->render('create',array(
-					'model'=>$model,
-				));
+			if ($model->role_name!=Rights::module()->superuserName) {
+				$model->password = md5($model->password);
+				if($model->save()){
+					$model->updateAssignmentItem(0,0);
+					Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Tạo mới thành công.</div>');
+					$this->redirect(array('view','id'=>$model->id));
+					return;
+				}
 			}
-		}else{
-			$roles = Customer::model()->getRolesList();
+			Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại sau</div>');
 			$this->render('create',array(
 				'model'=>$model,
-				'roles'=>$roles
 			));
-		}
+		} 
+		$roles = Customer::model()->getRolesList();
+		$this->render('create',array(
+			'model'=>$model,
+			'roles'=>$roles
+		));
 	}
 
 	/**
@@ -88,28 +89,24 @@ class CustomerController extends AController
 		if(isset($_POST['Customer']))
 		{
 			$model->attributes=$_POST['Customer'];
-			if (!isset($_POST['Customer']['password'])) {
-				$model->password = md5($model->password);
+			if ($model->role_name!=Rights::module()->superuserName) {
+				if (!isset($_POST['Customer']['password'])) {
+					$model->password = md5($model->password);
+				}
+				if($model->save()){
+					$model->updateAssignmentItem(1,0);
+					Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Cập nhập thành công.</div>');
+					$this->redirect(array('view','id'=>$model->id));
+					return;
+				}
 			}
-			
-			if($model->save()){
-				 // echo $this->updateAssignmentItem(10,$model->role_name);
-				$model->updateAssignmentItem(1,0);
-				Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Cập nhập thành công.</div>');
-				$this->redirect(array('view','id'=>$model->id));
-			}else{
-				Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại</div>');
-				$this->render('update',array(
-					'model'=>$model,
-				));
-			}
-		}else{
-		    $roles = Customer::model()->getRolesList();
-			$this->render('update',array(
-				'model'=>$model,
-				'roles'=>$roles,
-			));
+			Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại</div>');		
 		}
+		$roles = Customer::model()->getRolesList();
+		$this->render('update',array(
+			'model'=>$model,
+			'roles'=>$roles,
+		));	
 	}
 
 	/**
