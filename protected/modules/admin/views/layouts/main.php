@@ -141,6 +141,16 @@
                     </li>
                 </ul>
             </li>
+            <li class="<?php echo ($this->ID == 'news')?'active':''?>">
+                <a href="<?php echo Yii::app()->baseUrl.'/admin/news'?>">
+                    <span class="isw-print"></span><span class="text">Tin tức</span>
+                </a>
+            </li>
+            <li class="<?php echo ($this->ID == 'image')?'active':''?>">
+                <a href="<?php echo Yii::app()->baseUrl.'/admin/image'?>">
+                    <span class="isw-print"></span><span class="text">Hình ảnh</span>
+                </a>
+            </li>
 
         </ul>
         <div class="dr"><span></span></div>
