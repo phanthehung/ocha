@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2016 at 04:29 PM
+-- Generation Time: Jul 13, 2016 at 09:13 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -38,9 +38,8 @@ CREATE TABLE IF NOT EXISTS `authassignment` (
 --
 
 INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
-('admin', '1', NULL, 'N;'),
-('custom2', '3', NULL, 'N;'),
-('member', '4', NULL, NULL);
+('general manager', '4', NULL, 'N;'),
+('member', '5', '', '');
 
 -- --------------------------------------------------------
 
@@ -61,21 +60,40 @@ CREATE TABLE IF NOT EXISTS `authitem` (
 --
 
 INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
-('admin', 2, 'admin', NULL, NULL),
-('Admin.Product.*', 0, NULL, NULL, 'N;'),
-('Admin.Product.Detail', 0, NULL, NULL, 'N;'),
-('Admin.Product.Index', 0, NULL, NULL, 'N;'),
-('Admin.Product.View', 0, NULL, NULL, 'N;'),
-('Admin.Site.*', 0, NULL, NULL, 'N;'),
-('Admin.Site.Index', 0, NULL, NULL, 'N;'),
-('Admin.Suggest.*', 0, NULL, NULL, 'N;'),
-('Admin.Suggest.Done', 0, NULL, NULL, 'N;'),
-('Admin.Suggest.Index', 0, NULL, NULL, 'N;'),
-('Admin.Suggest.Update', 0, NULL, NULL, 'N;'),
-('Admin.Suggest.View', 0, NULL, NULL, 'N;'),
-('custom', 2, 'custom', NULL, 'N;'),
+('AccessAmin', 0, 'Truy cập trang quản lý', NULL, 'N;'),
+('admin', 2, 'admin\r\n', NULL, NULL),
+('Admin.Customer.Create', 0, 'thêm thành viên', NULL, 'N;'),
+('Admin.Customer.Delete', 0, 'xóa thành viên', NULL, 'N;'),
+('Admin.Customer.Index', 0, 'xem danh sách thành viên', NULL, 'N;'),
+('Admin.Customer.Update', 0, 'thay đổi thành viên', NULL, 'N;'),
+('Admin.Customer.View', 0, 'xem chi tiết thành viên', NULL, 'N;'),
+('Admin.Image.Create', 0, 'upload hình ảnh', NULL, 'N;'),
+('Admin.Image.Delete', 0, 'xóa hình ảnh', NULL, 'N;'),
+('Admin.Image.Index', 0, 'xem danh sách hình', NULL, 'N;'),
+('Admin.News.Create', 0, 'thêm tin tức', NULL, 'N;'),
+('Admin.News.Delete', 0, 'xóa tin tức', NULL, 'N;'),
+('Admin.News.Index', 0, 'xem danh sách tin tức', NULL, 'N;'),
+('Admin.News.Update', 0, 'cập nhập tin tức', NULL, 'N;'),
+('Admin.News.View', 0, 'xem chi tiết tin', NULL, 'N;'),
+('Admin.Order.Delete', 0, 'hủy đơn hàng', NULL, 'N;'),
+('Admin.Order.DeleteItem', 0, 'xóa sản phẩm trong đơn hàng', NULL, 'N;'),
+('Admin.Order.Delivered', 0, 'xác nhận giao hàng', NULL, 'N;'),
+('Admin.Order.Detail', 0, 'xem chi tiết đơn hàng', NULL, 'N;'),
+('Admin.Order.Index', 0, 'xem danh sách đơn hàng', NULL, 'N;'),
+('Admin.Order.Update', 0, 'cập nhập đơn hàng', NULL, 'N;'),
+('Admin.Product.Create', 0, 'thêm sản phẩm', NULL, 'N;'),
+('Admin.Product.Delete', 0, 'xóa sản phẩm', NULL, 'N;'),
+('Admin.Product.Detail', 0, 'xem chi tiết sản phẩm', NULL, 'N;'),
+('Admin.Product.Index', 0, 'xem danh sách sản phẩm', NULL, 'N;'),
+('Admin.Product.Update', 0, 'cập nhập sản phẩm', NULL, 'N;'),
+('Admin.Suggest.Done', 0, 'xử lý request', NULL, 'N;'),
+('Admin.Suggest.Index', 0, 'danh sách request', NULL, 'N;'),
+('Admin.Suggest.Update', 0, 'cập nhập request', NULL, 'N;'),
+('Admin.Suggest.View', 0, 'xem chi tiết request', NULL, 'N;'),
 ('custom2', 2, 'custom2', NULL, 'N;'),
 ('custom3', 2, 'custom3', NULL, 'N;'),
+('custom4', 2, 'custom4', NULL, 'N;'),
+('general manager', 2, 'quản lý chung', NULL, 'N;'),
 ('member', 2, 'member', NULL, 'N;');
 
 -- --------------------------------------------------------
@@ -94,11 +112,38 @@ CREATE TABLE IF NOT EXISTS `authitemchild` (
 --
 
 INSERT INTO `authitemchild` (`parent`, `child`) VALUES
-('custom', 'Admin.Product.*'),
-('custom', 'Admin.Product.Detail'),
-('custom', 'Admin.Product.Index'),
-('custom', 'Admin.Product.View'),
-('custom', 'custom2');
+('general manager', 'AccessAmin'),
+('general manager', 'Admin.Customer.Create'),
+('Admin.Customer.Create', 'Admin.Customer.Delete'),
+('general manager', 'Admin.Customer.Index'),
+('general manager', 'Admin.Customer.Update'),
+('general manager', 'Admin.Customer.View'),
+('general manager', 'Admin.Image.Create'),
+('general manager', 'Admin.Image.Delete'),
+('general manager', 'Admin.Image.Index'),
+('general manager', 'Admin.News.Create'),
+('general manager', 'Admin.News.Delete'),
+('general manager', 'Admin.News.Index'),
+('general manager', 'Admin.News.Update'),
+('general manager', 'Admin.News.View'),
+('general manager', 'Admin.Order.Delete'),
+('general manager', 'Admin.Order.DeleteItem'),
+('general manager', 'Admin.Order.Delivered'),
+('general manager', 'Admin.Order.Detail'),
+('general manager', 'Admin.Order.Index'),
+('general manager', 'Admin.Order.Update'),
+('general manager', 'Admin.Product.Create'),
+('general manager', 'Admin.Product.Delete'),
+('general manager', 'Admin.Product.Detail'),
+('general manager', 'Admin.Product.Index'),
+('general manager', 'Admin.Product.Update'),
+('general manager', 'Admin.Suggest.Done'),
+('general manager', 'Admin.Suggest.Index'),
+('general manager', 'Admin.Suggest.Update'),
+('general manager', 'Admin.Suggest.View'),
+('custom4', 'custom3'),
+('custom2', 'general manager'),
+('custom3', 'general manager');
 
 -- --------------------------------------------------------
 
@@ -115,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `saleoff` tinyint(1) NOT NULL DEFAULT '0',
   `role_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'member'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `customer`
@@ -123,8 +168,29 @@ CREATE TABLE IF NOT EXISTS `customer` (
 
 INSERT INTO `customer` (`id`, `email`, `username`, `password`, `phone`, `address`, `saleoff`, `role_name`) VALUES
 (1, '', 'Admin', '81dc9bdb52d04dc20036dbd8313ed055', '1234567833', '86 Nguyễn Thông P9 Q3', 0, 'admin'),
-(3, '1359013@itec.hcmus.edu.vn', 'phanthehung', '202cb962ac59075b964b07152d234b70', '1234567890', '', 0, 'custom2'),
-(4, '1359013@itec.hcmus.edu.vn', 'pthung', '81dc9bdb52d04dc20036dbd8313ed055', '', '', 0, 'member');
+(3, '1359013@itec.hcmus.edu.vn', 'phanthehung', '81dc9bdb52d04dc20036dbd8313ed055', '1234567890', '', 0, 'member'),
+(4, '1359013@itec.hcmus.edu.vn', 'pthung', '81dc9bdb52d04dc20036dbd8313ed055', '', '', 0, 'general manager'),
+(5, '', 'phanthehung2', '81dc9bdb52d04dc20036dbd8313ed055', '', '', 0, 'member');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image`
+--
+
+CREATE TABLE IF NOT EXISTS `image` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `directory` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`id`, `name`, `url`, `directory`) VALUES
+(12, 'empty', '/ocha/images/upload/1468378217empty.jpg', '/images/upload/1468378217empty.jpg');
 
 -- --------------------------------------------------------
 
@@ -147,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 INSERT INTO `news` (`ID`, `index`, `title`, `content`, `description`, `imgUrl`, `inserted`) VALUES
-(7, 0, 'Sự thật về claim “Hàm lượng chất chống oxi hóa trong matcha gấp 137 lần so với trà xanh”', '\nMatcha, cũng giống như nhiều loại sản phẩm dinh dưỡng, có lợi cho sức khỏe khác, thường bị nhiều website, shop bán hàng đẩy lên quá mức các tác dụng có lợi của nó. <br/>\nBạn có thể thấy rất nhiều website, shop bán matcha nói là matcha có hàm lượng chất chống oxi hóa (antioxidant) cao hơn gấp 137 lần so với trà xanh thông thường! Trong đó có những trang bán hàng phổ biến như DoMatcha, Zenmatcha cũng có claim như vậy. Điều này có đúng không?<br/>\nNếu ích lợi như vậy thì việc uống 1 ly matcha mỗi ngày sẽ nguy hiểm hơn là có lợi. Khả năng chống oxi hóa, lão hóa trong trà liên quan chủ yếu đến hợp chất EGCG có trong thành phần lá trà. Theo báo cáo của USDA năm 2007, lượng trung bình EGCG trong 1 ly trà xanh thông thường (225ml) khoảng 145mg, tương đương với việc một ly matcha sẽ có hàm lượng trung bình là gần 20g EGCG! Trong khi đó lượng sử dụng hàng ngày đề nghị của EGCG chỉ là khoảng 300mg! (dựa trên các nghiên cứu trên người của thành phẩm Teavigo của DSM, FDA vẫn chưa đưa ra khuyến cáo RDA cho EGCG). Như vậy thì matcha sẽ trở thành chất độc hơn là chất có lợi cho sức khỏe do hàm lượng EGCG quá cao!<br/>\nCâu hỏi được đặt là tại sao lại có claim như vậy. Hầu hết các trang web đều dẫn chứng từ một nghiên cứu của Anderton, C. R. & Weiss trên Journal of Chromatography A. Và cách diễn giải lập lờ của các website, các shop bán matcha này dẫn đến 1 kết luận HOÀN TOÀN SAI SỰ THẬT. <br/>\nBáo cáo này kết luận như sau: “Kết quả chỉ ra rằng hàm lượng EGCG trong matcha uống gấp 137 lần lượng EGCG trong trà xanh China Green Tips, và cao ít nhất gấp 3 lần so với các loại trà xanh khác”. Kết quả kiểm tra  của báo cáo này:\n0.42mg EGCG/g Tazo China Green Tips Tea (tương đương với 1.2mg EGCG trong 1 ly Tazo China Green Tips)\n57.4mg EGCG/g matcha (tương đương với 120 mg EGCG trong 1 ly matcha)<br/>\nTazo China Green Tips là một brand trà Green Tips của Starbuck. Loại trà Green Tips có nguồn gốc là một loại trà búp nổi tiếng của Trung Quốc, còn gọi là trà Maojian trồng ở Hà Nam, Trung Quốc. Kết quả của báo cáo trên KHÔNG chứng tỏ được hàm lượng ECGC trong matcha cao hơn 137 lần so với là trà xanh thông thường. Kết quả đó chứng tỏ là mẫu matcha kiểm tra có EGCG gấp 137 lần so với mẫu Tazo China Green Tips Tea, và mẫu này hoàn toàn không đại diện cho trà xanh thông thường. Mẫu Tazo Green Tips này có hàm lượng EGCG rất thấp, chỉ bằng 0.8% so với trà xanh thông thường. <br/>\nNhư vậy, kết luận matcha có hàm lượng EGCG cao hơn khoảng 3 lần so với các loại trà xanh thông thường khác thì có vẻ hợp lý hơn. Do matcha thường được thu hoạch ở Nhật nơi có điều kiện khí hậu phù hợp để cho lượng EGCG cao và matcha được thu hoạch từ toàn bộ lá trà đã được rút gân lá, thay vì các loại trà xanh thông thường thường được uống bằng cách ngâm/trích ly lá trà.  \nNguồn tham khảo:<br/>\n<a href="http://www.ars.usda.gov/SP2UserFiles/Place/80400525/Data/Flav/Flav_R03.pdf" title="">www.teavigoinfo.com/pdf/medical-safety-opinion.pdf</a><br/>\n<a href="http://www.ncbi.nlm.nih.gov/pubmed/14518774" title="">http://www.ncbi.nlm.nih.gov/pubmed/14518774</a><br/>\n<a href="http://www.ars.usda.gov/SP2UserFiles/Place/80400525/Data/Flav/Flav_R03.pdf" title="">www.ars.usda.gov/SP2UserFiles/Place/12354500/Data/Flav/Flav_R03.pdf</a><br/>\n', 'Bạn có thể thấy rất nhiều website, shop bán matcha nói là matcha có hàm lượng chất chống oxi hóa (antioxidant) cao hơn gấp 137 lần so với trà xanh thông thường! Trong đó có những trang bán hàng phổ biến như DoMatcha, Zenmatcha cũng có claim như vậy. Điều này có đúng không?', 'images/blogs/1.jpg', '0000-00-00 00:00:00');
+(7, 0, 'Sự thật về claim “Hàm lượng chất chống oxi hóa trong matcha gấp 137 lần so với trà xanh”', '\nMatcha, cũng giống như nhiều loại sản phẩm dinh dưỡng, có lợi cho sức khỏe khác, thường bị nhiều website, shop bán hàng đẩy lên quá mức các tác dụng có lợi của nó. <br/>\nBạn có thể thấy rất nhiều website, shop bán matcha nói là matcha có hàm lượng chất chống oxi hóa (antioxidant) cao hơn gấp 137 lần so với trà xanh thông thường! Trong đó có những trang bán hàng phổ biến như DoMatcha, Zenmatcha cũng có claim như vậy. Điều này có đúng không?<br/>\nNếu ích lợi như vậy thì việc uống 1 ly matcha mỗi ngày sẽ nguy hiểm hơn là có lợi. Khả năng chống oxi hóa, lão hóa trong trà liên quan chủ yếu đến hợp chất EGCG có trong thành phần lá trà. Theo báo cáo của USDA năm 2007, lượng trung bình EGCG trong 1 ly trà xanh thông thường (225ml) khoảng 145mg, tương đương với việc một ly matcha sẽ có hàm lượng trung bình là gần 20g EGCG! Trong khi đó lượng sử dụng hàng ngày đề nghị của EGCG chỉ là khoảng 300mg! (dựa trên các nghiên cứu trên người của thành phẩm Teavigo của DSM, FDA vẫn chưa đưa ra khuyến cáo RDA cho EGCG). Như vậy thì matcha sẽ trở thành chất độc hơn là chất có lợi cho sức khỏe do hàm lượng EGCG quá cao!<br/>\nCâu hỏi được đặt là tại sao lại có claim như vậy. Hầu hết các trang web đều dẫn chứng từ một nghiên cứu của Anderton, C. R. & Weiss trên Journal of Chromatography A. Và cách diễn giải lập lờ của các website, các shop bán matcha này dẫn đến 1 kết luận HOÀN TOÀN SAI SỰ THẬT. <br/>\nBáo cáo này kết luận như sau: “Kết quả chỉ ra rằng hàm lượng EGCG trong matcha uống gấp 137 lần lượng EGCG trong trà xanh China Green Tips, và cao ít nhất gấp 3 lần so với các loại trà xanh khác”. Kết quả kiểm tra  của báo cáo này:\n0.42mg EGCG/g Tazo China Green Tips Tea (tương đương với 1.2mg EGCG trong 1 ly Tazo China Green Tips)\n57.4mg EGCG/g matcha (tương đương với 120 mg EGCG trong 1 ly matcha)<br/>\nTazo China Green Tips là một brand trà Green Tips của Starbuck. Loại trà Green Tips có nguồn gốc là một loại trà búp nổi tiếng của Trung Quốc, còn gọi là trà Maojian trồng ở Hà Nam, Trung Quốc. Kết quả của báo cáo trên KHÔNG chứng tỏ được hàm lượng ECGC trong matcha cao hơn 137 lần so với là trà xanh thông thường. Kết quả đó chứng tỏ là mẫu matcha kiểm tra có EGCG gấp 137 lần so với mẫu Tazo China Green Tips Tea, và mẫu này hoàn toàn không đại diện cho trà xanh thông thường. Mẫu Tazo Green Tips này có hàm lượng EGCG rất thấp, chỉ bằng 0.8% so với trà xanh thông thường. <br/>\nNhư vậy, kết luận matcha có hàm lượng EGCG cao hơn khoảng 3 lần so với các loại trà xanh thông thường khác thì có vẻ hợp lý hơn. Do matcha thường được thu hoạch ở Nhật nơi có điều kiện khí hậu phù hợp để cho lượng EGCG cao và matcha được thu hoạch từ toàn bộ lá trà đã được rút gân lá, thay vì các loại trà xanh thông thường thường được uống bằng cách ngâm/trích ly lá trà.  \nNguồn tham khảo:<br/>\n<a href="http://www.ars.usda.gov/SP2UserFiles/Place/80400525/Data/Flav/Flav_R03.pdf" title="">www.teavigoinfo.com/pdf/medical-safety-opinion.pdf</a><br/>\n<a href="http://www.ncbi.nlm.nih.gov/pubmed/14518774" title="">http://www.ncbi.nlm.nih.gov/pubmed/14518774</a><br/>\n<a href="http://www.ars.usda.gov/SP2UserFiles/Place/80400525/Data/Flav/Flav_R03.pdf" title="">www.ars.usda.gov/SP2UserFiles/Place/12354500/Data/Flav/Flav_R03.pdf</a><br/>\n', 'Bạn có thể thấy rất nhiều website, shop bán matcha nói là matcha có hàm lượng chất chống oxi hóa (antioxidant) cao hơn gấp 137 lần so với trà xanh thông thường! Trong đó có những trang bán hàng phổ biến như DoMatcha, Zenmatcha cũng có claim như vậy. Điều này có đúng không?', '/ocha/images/blogs/1.jpg', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -174,8 +240,8 @@ CREATE TABLE IF NOT EXISTS `order` (
 --
 
 INSERT INTO `order` (`orderId`, `address`, `phone`, `total`, `user`, `email`, `note`, `state`, `inserted`, `updater`, `updated`) VALUES
-(41, '86 Nguyễn Thông P9 Q3', 12345678, 150000, 'Admin', '', 'empty', 0, '2016-07-05 15:51:47', 0, NULL),
-(42, '86 Nguyễn Thông P9 Q3', 12345678, 200000, 'Admin', '', 'empty', 0, '2016-07-05 15:55:37', 0, NULL),
+(41, '86 Nguyễn Thông P9 Q3', 12345678, 150000, 'Adminddd', '', 'empty', -1, '2016-07-05 15:51:47', 1, '2016-07-12 16:58:58'),
+(42, '86 Nguyễn Thông P9 Q3', 12345678, 200000, 'Admin', '', 'empty', 1, '2016-07-05 15:55:37', 1, '2016-07-12 17:00:13'),
 (43, '86 Nguyễn Thông P9 Q3', 12345678, 0, 'Admin', '', 'empty', 0, '2016-07-05 15:57:48', 0, NULL);
 
 -- --------------------------------------------------------
@@ -325,6 +391,12 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
@@ -368,7 +440,12 @@ ALTER TABLE `suggest`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `image`
+--
+ALTER TABLE `image`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `news`
 --
