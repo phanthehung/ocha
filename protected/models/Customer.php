@@ -137,4 +137,15 @@ class Customer extends CActiveRecord
 	    }
 		return $roles;
 	}
+
+	public function getParents($item){
+		$parrentNames = array();
+		$parents = Rights::module()->getAuthorizer()->getAuthItemParents($item);
+		foreach ($parents as $parent) {
+			$parrentNames["$parent->name"] = $parent->name;
+		}
+		$parrentNames["$item"] = $item;
+		return $parrentNames;
+	}
+
 }

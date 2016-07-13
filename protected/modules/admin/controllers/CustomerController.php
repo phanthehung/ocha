@@ -46,14 +46,15 @@ class CustomerController extends AController
 	public function actionCreate()
 	{
 		$model=new Customer;
-
+		$parents = Customer::model()->getParents(Yii::app()->user->getState('role'));
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Customer']))
 		{
 			$model->attributes=$_POST['Customer'];
-			if ($model->role_name!=Rights::module()->superuserName) {
+			$allow = $this->checkPriviledge($model,$parents);
+			if ($allow) {
 				$model->password = md5($model->password);
 				if($model->save()){
 					$model->updateAssignmentItem(0,0);
@@ -68,6 +69,7 @@ class CustomerController extends AController
 			));
 		} 
 		$roles = Customer::model()->getRolesList();
+		$roles = array_diff($roles,$parents);
 		$this->render('create',array(
 			'model'=>$model,
 			'roles'=>$roles
@@ -82,31 +84,54 @@ class CustomerController extends AController
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$parents = Customer::model()->getParents(Yii::app()->user->getState('role'));		
 
 		if(isset($_POST['Customer']))
 		{
 			$model->attributes=$_POST['Customer'];
-			if ($model->role_name!=Rights::module()->superuserName) {
+			$allow = $this->checkPriviledge($model,$parents);
+			if ($allow) {
 				if (!isset($_POST['Customer']['password'])) {
 					$model->password = md5($model->password);
 				}
 				if($model->save()){
 					$model->updateAssignmentItem(1,0);
 					Yii::app()->user->setFlash('mss','<div class="alert alert-success"><h4>Thành công!</h4>Cập nhập thành công.</div>');
-					$this->redirect(array('view','id'=>$model->id));
+					$this->redirect(Yii::app()->createUrl('admin/customer/view')."/id/".$model->id);
 					return;
 				}
 			}
 			Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>Quá trình lưu bị lỗi. Xin vui lòng thử lại</div>');		
+		}else{
+			$allow = $this->checkPriviledge($model,$parents);
+			if (!$allow) {
+				Yii::app()->user->setFlash('mss','<div class="alert alert-error"><h4>Error!</h4>bạn không có quyền chỉnh sửa thông tin người này</div>');
+				$this->redirect(Yii::app()->createUrl('admin/customer/view')."/id/".$model->id);
+				return;
+			}
 		}
+
 		$roles = Customer::model()->getRolesList();
+		$roles = array_diff($roles,$parents);
 		$this->render('update',array(
 			'model'=>$model,
 			'roles'=>$roles,
 		));	
+	}
+
+	public function checkPriviledge($model,$parent)
+	{
+		if (Yii::app()->user->getState('role') == Rights::module()->superuserName) {
+			return true;
+		}
+		if ($model->role_name==Rights::module()->superuserName) {
+			return false;
+		}		
+		if (isset($parents["$model->role_name"])) {
+			return false;
+		}
+		return false;
+		
 	}
 
 	/**
