@@ -88,10 +88,11 @@ class CustomerController extends AController
 
 		if(isset($_POST['Customer']))
 		{
+			$oldPassword = $model->password;
 			$model->attributes=$_POST['Customer'];
 			$allow = $this->checkPriviledge($model,$parents);
 			if ($allow) {
-				if (!isset($_POST['Customer']['password'])) {
+				if ($oldPassword != $model->password) {
 					$model->password = md5($model->password);
 				}
 				if($model->save()){
@@ -113,6 +114,9 @@ class CustomerController extends AController
 
 		$roles = Customer::model()->getRolesList();
 		$roles = array_diff($roles,$parents);
+		if ($model->id==Yii::app()->user->getState('id')) {
+			$roles["$model->role_name"] = $model->role_name;
+		}
 		$this->render('update',array(
 			'model'=>$model,
 			'roles'=>$roles,
@@ -130,7 +134,7 @@ class CustomerController extends AController
 		if (isset($parents["$model->role_name"])) {
 			return false;
 		}
-		return false;
+		return true;
 		
 	}
 

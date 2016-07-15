@@ -36,16 +36,24 @@
             	</tbody>
             </table>                
                 <div class="xs-12 margin-md text-center">
-                    <div class="xs-4">
+                    <div class="xs-3">
                         <div style="max-width: 150px;" class="xs-11 margin-auto text-center">
                             <button type="button" class="button xs-12"><a href="<?php echo Yii::app()->baseUrl ?>/site/changePassword" title="">Đổi mật khẩu</a></button>
                         </div>                         
                     </div>
-                    <div class="xs-4">
+                    <div class="xs-3">
                         <div style="max-width: 150px;" class="xs-11 margin-auto text-center">
                             <button type="button" class="button xs-12"><a href="<?php echo Yii::app()->baseUrl ?>/site/update" title="">Sửa thông tin</a></button>
                         </div>
                     </div>
+                    <?php if (Yii::app()->user->getState('role')!='member'): ?>
+                    	<div class="xs-3">
+	                        <div style="max-width: 150px;" class="xs-11 margin-auto text-center">
+	                            <button type="button" class="button xs-12"><a href="<?php echo Yii::app()->baseUrl ?>/admin" title="">Quản lý</a></button>
+	                        </div>
+	                    </div>
+                    <?php endif ?>
+                    
         	    </div>
         </div>
     </div>
