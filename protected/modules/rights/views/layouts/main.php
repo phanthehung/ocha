@@ -2,7 +2,7 @@
 
 
 		<?php $this->renderPartial('/_flash'); ?>
-		<?php $this->renderPartial('/_menu'); ?>
+		<!-- <?php $this->renderPartial('/_menu'); ?> -->
 		<?php echo $content; ?>
 
 

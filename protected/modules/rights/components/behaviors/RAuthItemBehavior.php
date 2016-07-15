@@ -202,11 +202,12 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getRemoveChildLink()
 	{
-		return CHtml::linkButton(Rights::t('core', 'Remove'), array(
-			'submit'=>array('authItem/removeChild', 'name'=>urlencode($this->parent->name), 'child'=>urlencode($this->owner->name)),
-			'class'=>'remove-link',
-			'csrf'=>Yii::app()->request->enableCsrfValidation,
-		));
+		// return CHtml::linkButton(Rights::t('core', 'Remove'), array(
+		// 	'submit'=>array('authItem/removeChild', 'name'=>urlencode($this->parent->name), 'child'=>urlencode($this->owner->name)),
+		// 	'class'=>'remove-link',
+		// 	'csrf'=>Yii::app()->request->enableCsrfValidation,
+		// ));
+		return "<a href='".Yii::app()->createUrl('rights/authItem/removeChild',array('name'=>urlencode($this->parent->name),'child'=>urlencode($this->owner->name)))."'>Remove</a>";
 	}
 
 	/**

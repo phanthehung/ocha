@@ -388,7 +388,8 @@ class AuthItemController extends RController
 		// return '{"succed":"true"}';
 		// // We only allow deletion via POST request
 		// if( Yii::app()->request->isPostRequest===true )
-		// {
+		if (Yii::app()->user->getState('role')===$this->_authorizer->superuserName) 
+		{
 			$itemName = $this->getItemName();
 			
 			// Load the item and save the name for later use
@@ -409,11 +410,11 @@ class AuthItemController extends RController
 			}else{
 				return 'success';
 			}
-		// }
-		// else
-		// {
-		// 	throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
-		// }
+		}
+		else
+		{
+			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+		}
 	}
 
 	/**
@@ -422,7 +423,8 @@ class AuthItemController extends RController
 	public function actionRemoveChild()
 	{
 		// We only allow deletion via POST request
-		if( Yii::app()->request->isPostRequest===true )
+		// if( Yii::app()->request->isPostRequest===true )
+		if (Yii::app()->user->getState('role')===$this->_authorizer->superuserName) 
 		{
 			$itemName = $this->getItemName();
 			$childName = $this->getChildName();
